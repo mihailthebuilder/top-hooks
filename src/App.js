@@ -17,6 +17,8 @@ const App = () => {
     return () => {
       document.removeEventListener("click", changeColorOnClick);
     };
+
+  /*the array at the end (dependency array) is any state, prop or context that will be used in useEffect*/
   }, [color]);
 
   return (
@@ -25,11 +27,8 @@ const App = () => {
         id="myDiv"
         style={{
           color: "white",
-          width: "100px",
-          height: "100px",
-          position: "absolute",
-          left: "50%",
-          top: "50%",
+          width: "60vw",
+          height: "60vh",
           backgroundColor: color,
         }}
       >
