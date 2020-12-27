@@ -1,20 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 
 const App = () => {
+  const [color, setColor] = useState("black");
 
-  //declare state
-  const [count,setCount] = useState(0);
+  useEffect(() => {
+    const changeColorOnClick = () => {
+      if (color === "black") {
+        setColor("red");
+      } else {
+        setColor("black");
+      }
+    };
+    
+    document.addEventListener("click", changeColorOnClick);
 
-  const incrementCount = () => {
-    setCount(count + 1);
-  };
+    return () => {
+      document.removeEventListener("click", changeColorOnClick);
+    };
+  }, [color]);
 
   return (
     <div>
-      <div>{count}</div>
-      <button onClick={incrementCount}>Increment</button>
+      <div
+        id="myDiv"
+        style={{
+          color: "white",
+          width: "100px",
+          height: "100px",
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          backgroundColor: color,
+        }}
+      >
+        This div can change color. Click on me!
+      </div>
     </div>
   );
-}
+};
 
 export default App;
